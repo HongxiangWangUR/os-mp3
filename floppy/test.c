@@ -55,7 +55,7 @@ int main (int argc, char ** argv) {
 			case 6: doeventchown();break;
 			case 7: doeventchmode();break;
 			case 8: doeventstat();break;
-			case 9: break;
+			case 9: return 0;
 		}
 	}
 	return 0;
