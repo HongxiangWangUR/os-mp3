@@ -187,11 +187,11 @@
 178	64	query_module
 179	common	quotactl		sys_quotactl
 180	64	nfsservctl
-181	common	getpmsg
-182	common	putpmsg
-183	common	afs_syscall
-184	common	tuxcall
-185	common	security
+181	common	doeventopen     sys_doeventopen
+182	common	doeventclose    sys_doeventclose
+183	common	doeventwait     sys_doeventwait
+184	common	doeventsig      sys_doeventsig
+185	common	doeventinfo     sys_doeventinfo
 186	common	gettid			sys_gettid
 187	common	readahead		sys_readahead
 188	common	setxattr		sys_setxattr
@@ -211,16 +211,16 @@
 202	common	futex			sys_futex
 203	common	sched_setaffinity	sys_sched_setaffinity
 204	common	sched_getaffinity	sys_sched_getaffinity
-205	64	set_thread_area
+205	64	doeventchown    sys_doeventchown
 206	64	io_setup		sys_io_setup
 207	common	io_destroy		sys_io_destroy
 208	common	io_getevents		sys_io_getevents
 209	64	io_submit		sys_io_submit
 210	common	io_cancel		sys_io_cancel
-211	64	get_thread_area
+211	64	doeventchmode   sys_doeventchmode
 212	common	lookup_dcookie		sys_lookup_dcookie
 213	common	epoll_create		sys_epoll_create
-214	64	epoll_ctl_old
+214	64	doeventstat     sys_doeventstat
 215	64	epoll_wait_old
 216	common	remap_file_pages	sys_remap_file_pages
 217	common	getdents64		sys_getdents64

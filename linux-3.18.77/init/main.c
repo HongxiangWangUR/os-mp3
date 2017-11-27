@@ -78,6 +78,7 @@
 #include <linux/context_tracking.h>
 #include <linux/random.h>
 #include <linux/list.h>
+#include <linux/event.h>
 
 #include <asm/io.h>
 #include <asm/bugs.h>
@@ -931,6 +932,9 @@ static noinline void __init kernel_init_freeable(void);
 static int __ref kernel_init(void *unused)
 {
 	int ret;
+
+	/* initialize event */
+	doevent_init();
 
 	kernel_init_freeable();
 	/* need to finish all async __init code before freeing the memory */
