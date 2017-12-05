@@ -201,7 +201,8 @@ SYSCALL_DEFINE3(doeventchown,int, input_id,uid_t, UID,gid_t, GID){
 	if(p!=NULL && access_control_check(p)){
 		p->uid=UID;
 		p->gid=GID;
-		result=1;
+		//if we find the event and we can get access to it then change return value
+		result=0;
 	}
 	write_unlock_irqrestore(&event_lock,irq_flags);
 	return result;
@@ -221,16 +222,16 @@ SYSCALL_DEFINE3(doeventchmode,int, eventID,int, UIDFlag,int, GIDFlag){
 		/* begin to change signal enable bits */
 		if(UIDFlag==1 && GIDFlag==1){
 			p->signal_enable=SIG_BITS_TYPE4;
-			result=1;
+			result=0;
 		}else if(UIDFlag==0 && GIDFlag==1){
 			p->signal_enable=SIG_BITS_TYPE3;
-			result=1;
+			result=0;
 		}else if(UIDFlag==1 && GIDFlag==0){
 			p->signal_enable=SIG_BITS_TYPE2;
-			result=1;
+			result=0;
 		}else if(UIDFlag==0 && GIDFlag==0){
 			p->signal_enable=SIG_BITS_TYPE1;
-			result=1;
+			result=0;
 		}
 	}
 	write_unlock_irqrestore(&event_lock,irq_flags);
@@ -279,7 +280,7 @@ SYSCALL_DEFINE5(doeventstat, int, eventID,uid_t*,UID,gid_t*,GID,int*, UIDFlag,in
 		write_unlock_irqrestore(&event_lock,irq_flags);
 		return result;
 	}
-	result=1;
+	result=0;
 	write_unlock_irqrestore(&event_lock,irq_flags);
 	//leave the CS
 	return result;
